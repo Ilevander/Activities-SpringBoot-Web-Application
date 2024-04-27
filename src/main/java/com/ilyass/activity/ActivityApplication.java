@@ -24,7 +24,10 @@ public class ActivityApplication {
 		//Using lambda expression to avoid Java Verbosity Interface,inheritence,class...
 		return args ->{
 			Student student = new Student(); 
-			student.
+			student.setStudentId("S123"); 
+	        student.setDepartment("Computer Science"); 
+
+	        studentRepository.save(student);
 		};
 	}
 }
