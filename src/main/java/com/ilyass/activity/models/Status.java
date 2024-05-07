@@ -25,8 +25,11 @@ public class Status {
 
     private String statusName;
 
+    private boolean read;
+    
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
 }
+
