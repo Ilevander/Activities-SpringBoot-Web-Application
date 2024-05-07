@@ -20,9 +20,10 @@ public class ActivityService {
         return activityRepository.findAllByTeacher(teacher);
     }
 
-    public List<Activity> getAllActivitiesForStudent(Student student) {
-        return activityRepository.findAllByStudentClassAndTeacher(student.getStudentClass(), student.getTeacher());
-    }
+//    public List<Activity> getAllActivitiesForStudent(Student student) {
+//        // Assuming Student class has getStudentClass() and getTeacher() methods
+//        return activityRepository.findAllByStudentClassAndTeacher(student.getStudentClass(), student.getTeacher());
+//    }
 
     public void createActivity(Activity activity) {
         activityRepository.save(activity);
