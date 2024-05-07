@@ -1,6 +1,7 @@
 package com.ilyass.activity.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ilyass.activity.models.Activity;
 import com.ilyass.activity.models.Status;
+import com.ilyass.activity.models.Student;
 import com.ilyass.activity.repository.ActivityRepository;
 import com.ilyass.activity.repository.StatusRepository;
 import com.ilyass.activity.repository.StudentRepository;
@@ -26,41 +28,39 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Activity> getActivitiesForStudent(Student student) {
-        return activityRepository.findByStudent(student);
+        return activityRepository.findByStudentsContains(student);
     }
 
     @Override
     public List<Activity> filterActivities(String semester, String subject, String status) {
-        // Implement filtering logic based on semester, subject, and status
-        return activityRepository.findAllBySemesterAndSubjectAndStatus(semester, subject, status);
+        return activityRepository.findAllBySemesterAndSubjectAndStatus_StatusName(semester, subject, status);
     }
 
     @Transactional
     @Override
     public void markActivityAsRead(Activity activity) {
-        // Implement logic to mark activity as read	
-        Status status = activity.getStatus();
-        if (status != null) {
+        Student student = activity.getStudents().iterator().next(); 
+        Optional<Status> statusOptional = statusRepository.findByStudent(student);
+        statusOptional.ifPresent(status -> {
             status.setRead(true);
             statusRepository.save(status);
-        }
+        });
     }
 
     @Transactional
     @Override
     public void markActivityAsUnread(Activity activity) {
-        // Implement logic to mark activity as unread
-        Status status = activity.getStatus();
-        if (status != null) {
+        Student student = activity.getStudents().iterator().next(); 
+        Optional<Status> statusOptional = statusRepository.findByStudent(student);
+        statusOptional.ifPresent(status -> {
             status.setRead(false);
             statusRepository.save(status);
-        }
+        });
     }
 
     @Transactional
     @Override
     public void submitAssignment(Activity activity) {
-        // Implement logic to submit assignment
         activity.getTypes().stream().filter(type -> "Work to be submitted".equals(type.getTypeName())).findFirst()
                 .ifPresent(type -> {
                     type.setSubmitted(true);

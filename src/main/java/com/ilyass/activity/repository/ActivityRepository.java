@@ -33,4 +33,8 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     void markActivityAsRead(Activity activity);
 
     void markActivityAsUnread(Activity activity);
+    
+    List<Activity> findByStudentsContains(Student student);
+
+    List<Activity> findAllBySemesterAndSubjectAndStatus_StatusName(String semester, String subject, String statusName);
 }
