@@ -25,6 +25,8 @@ public class Type {
 
     private String typeName;
 
+    private boolean submitted;
+    
     @ManyToOne
     @JoinColumn(name = "activity_id")
     private Activity activity;
