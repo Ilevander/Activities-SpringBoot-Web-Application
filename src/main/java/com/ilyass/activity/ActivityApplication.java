@@ -1,5 +1,7 @@
 package com.ilyass.activity;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -42,7 +44,10 @@ public class ActivityApplication {
 	        		.build();
 	        userRepository.save(u3);
 	        
-	        
+	        List<User> users = userRepository.findAll();
+	        users.forEach(u->{
+	        	System.out.println(u.toString());
+	        });
 	        
 	        
 		};
