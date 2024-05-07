@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ilyass.activity.models.Activity;
 import com.ilyass.activity.models.Teacher;
+import com.ilyass.activity.models.Student;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
@@ -24,4 +25,12 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     List<Activity> findAllByStudentClassAndTeacher(String studentClass, Teacher teacher);
 
     List<Activity> findAllByGroupAndTeacher(String group, Teacher teacher);
+
+    List<Activity> findByStudent(Student student);
+
+    List<Activity> findAllBySemesterAndSubjectAndStatus(String semester, String subject, String status);
+
+    void markActivityAsRead(Activity activity);
+
+    void markActivityAsUnread(Activity activity);
 }
