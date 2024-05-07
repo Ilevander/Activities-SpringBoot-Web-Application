@@ -10,9 +10,9 @@ public interface TeacherActivityService {
 
     List<Activity> getAllActivitiesForTeacher(Teacher teacher);
 
-    Activity createActivity(Activity activity);
+    void createActivity(Activity activity);
 
-    Activity updateActivity(Activity activity);
+    void updateActivity(Activity activity);
 
     void deleteActivity(Long activityId);
 }
