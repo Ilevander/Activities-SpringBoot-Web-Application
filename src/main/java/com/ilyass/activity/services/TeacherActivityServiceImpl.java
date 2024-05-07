@@ -12,12 +12,8 @@ import com.ilyass.activity.models.Activity;
 @Service
 public class TeacherActivityServiceImpl implements TeacherActivityService {
 
-    private final ActivityRepository activityRepository;
-
-    @Autowired
-    public TeacherActivityServiceImpl(ActivityRepository activityRepository) {
-        this.activityRepository = activityRepository;
-    }
+	@Autowired
+    private ActivityRepository activityRepository;
 
     @Override
     public List<Activity> getAllActivitiesForTeacher(Teacher teacher) {
@@ -25,13 +21,13 @@ public class TeacherActivityServiceImpl implements TeacherActivityService {
     }
 
     @Override
-    public Activity createActivity(Activity activity) {
-        return activityRepository.save(activity);
+    public void createActivity(Activity activity) {
+        activityRepository.save(activity);
     }
 
     @Override
-    public Activity updateActivity(Activity activity) {
-        return activityRepository.save(activity);
+    public void updateActivity(Activity activity) {
+        activityRepository.save(activity);
     }
 
     @Override
