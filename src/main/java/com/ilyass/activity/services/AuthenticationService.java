@@ -26,5 +26,8 @@ public interface AuthenticationService {
      * @param password The password to hash
      * @return The hashed password
      */
+    /*
+    scrum modif
+    */
     String hashPassword(String password);
 }
