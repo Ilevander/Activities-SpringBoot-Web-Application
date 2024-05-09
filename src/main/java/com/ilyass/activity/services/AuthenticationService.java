@@ -28,6 +28,7 @@ public interface AuthenticationService {
      */
     /*
     scrum modif
+    2tototo
     */
     String hashPassword(String password);
 }
